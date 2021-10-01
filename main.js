@@ -31,3 +31,39 @@ function speak(){
     var utter = SpeechSynthesisUtterance(speak_data_1  , speak_data_2)
     synth.speak(utter)
 }
+function Predict_it() {
+    Img = document.getElementById("taken_img")
+    classifier.classify(Img, gotresults)
+}
+
+function gotresults(error, results) {
+    if (error) {
+        console.error()
+    }
+    else {
+        console.log(results)
+        prediction1 = results[0].label
+        prediction2 = results[1].label
+        document.getElementById("gesture1").innerHTML = prediction1
+        document.getElementById("Gesture2").innerHTML = prediction2
+        if (prediction1 == "Yo") {
+            document.getElementById("Gesture1").innerHTML = "&#129304;"
+        }
+        else if (prediction1 == "Victory") {
+            document.getElementById("Gesture1").innerHTML = "&#9996;"
+        } 
+        else if (prediction1 == "Thumbs Up") {
+            document.getElementById("Gesture1").innerHTML = "&#128077;"
+        }
+        if (prediction2 == "Yo") {
+            document.getElementById("gesture2").innerHTML = "&#129304;"
+        }
+        else if (prediction2 == "Victory") {
+            document.getElementById("gesture2").innerHTML = "&#9996;"
+        } 
+        else if (prediction2 == "Thumbs Up") {
+            document.getElementById("gesture2").innerHTML = "&#128077;"
+        }
+    }
+
+}
